@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Get News</title>
+
+	<link rel="stylesheet" type="text/css" href="./styles/style.css">
+	<script type="text/javascript" src="./js/script.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-light">
+	<div class="navigation bg-white sticky-top">
+	<nav class="navbar sticky-top navbar-light bg-white container-xl">
+		<a class="navbar-brand" href="index.html" style="color: red; font-size: 1.8rem; padding: 0px; margin: 0px;">
+			<b>Get News</b>
+		</a>
+		<div class="nav-button bg-white">
+			<button class="navbar-button" type="button" onclick="gettodaydata()"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Today</button>
+			<button class="navbar-button active-btn" type="button" onclick="gettrenddata()"><i class="fa fa-fire" aria-hidden="true"></i> Trending</button>
+			<button class="navbar-button" type="button" data-toggle="modal" data-target="#model-search"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+		</div>
+		
+		<button type="button" class="navbar-button" data-toggle="modal" data-target="#model"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+	</nav>
+	</div>
+	<div class="modal fade" id="model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-md">
+			<div class="modal-content p-3">
+				<img src="./img/google-playstore.png" alt="play-store">
+				<br>
+				<center><h2>Download our Application</h2></center>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="model-search" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-md">
+			<div class="modal-content p-3">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Search for:</h5>
+					<button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">x</span>
+					</button>
+				</div>
+				<div class="model-body">
+					<div class="form-group">
+						<input type="text" class="form-control" id="search-text"><br>
+						<center><button id="search=btn" type="button" class="btn btn-danger" onclick="getsearchdata()"><i class="fa fa-search" aria-hidden="true"></i> Search</button></center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-xxl">
+		<div class="main">
+			<div class="left-side">
+				<button class="btn btn-sm btn-danger" id="open-menu">▼</button>
+				<div id="mySidepanel" class="left-side-nav bg-white">
+					
+					<a onclick="getcatdata('entertainment')" href="#"><img src="./icons/entertainment.png"><span> Entertainment</span></a>
+					<a onclick="getcatdata('technology')" href="#"><img src="./icons/technology.png"><span> Technology</span></a>
+					<a onclick="getcatdata('business')" href="#"><img src="./icons/business.png"><span> Business</span></a>
+					<a onclick="getcatdata('general')" href="#"><img src="./icons/general.png"><span> General</span></a>
+					<a onclick="getcatdata('health')" href="#"><img src="./icons/health.png"><span> Health</span></a>
+					<a onclick="getcatdata('science')" href="#"><img src="./icons/science.png"><span> Science</span></a>
+					<a onclick="getcatdata('sports')" href="#"><img src="./icons/sports.png"><span> Sports</span></a>
+					<a onclick="gettrenddata()" href="#"><img src="./icons/fire.png"><span> Top Headlines</span></a>
+
+					<div class="app-download">
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="main-content">
+				<!-----Data Load By API-->
+				<div class="load-new" id="news-data">
+
+				</div>
+				<br>
+				<center><button class="btn btn-danger" onclick="loadmore()">Load More</button></center>
+			</div>
+			<br>
+			<br>
+			<br>
+			<div class="right-side">
+				<div class="right-side-img bg-white">
+					<img src="https://learn.demio.com/wp-content/uploads/2018/02/vga.png">
+					<img src="https://i.pinimg.com/originals/91/dc/84/91dc84c9f29e3bdb73c6182b190302d4.png">
+					<img src="https://learn.demio.com/wp-content/uploads/2018/02/vga.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var openBtn = document.getElementById("open-menu");
+	var closeBtn = document.getElementById("close-menu");
+	var sidePanel = document.getElementById("mySidepanel");
+	openBtn.onclick = () =>{
+		if(sidePanel.style.height != "200px")
+		{
+			document.getElementById("mySidepanel").style.height ="200px";
+			openBtn.style.top = "240px";
+			openBtn.innerText = "▲";
+		}
+		else
+		{
+			document.getElementById("mySidepanel").style.height ="50px";
+			openBtn.style.top = "95px";
+			openBtn.innerText = "▼";
+		}
+	};
+</script>
+</html>
